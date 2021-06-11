@@ -5,7 +5,7 @@ const nums = timer.querySelector('#num-container');
 
 const endTime = 40;
 
-function paintTick() {
+function paintLines() {
     for(let i=0; i<30; i++) {
         const line = document.createElement('div');
         line.classList.add('line');
@@ -68,7 +68,15 @@ function play() {
     setInterval(tickSec,1000)
 }
 
-paintTick();
-paintNumber();
-paintRemainTime();
-play();
+if (lines) {
+    paintLines();
+}
+
+if (nums) {
+    paintNumber();
+}
+
+if (fins) {
+    paintRemainTime();
+    play();
+}
