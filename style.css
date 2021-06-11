@@ -19,16 +19,16 @@
 }
 
 .timer .line {
+    width: 100%;
+    height: 1px;
+    top: calc(50% - 1px / 2);
+
     background: #000;
     position: absolute;
-
-    top: 50%;
-    height: 1px;
-    width: 15em;
 }
 
 .timer .line.thick {
-    width: calc(15em + .4em);
+    width: calc(100% + .4em);
     left: calc(-.4em / 2);
 
     height: 3px;
@@ -37,10 +37,10 @@
 
 .timer .cover1{
     position: absolute;
-    top: 2%;
-    left: 2%;
-    width: 96%;
-    height: 96%;
+    width: calc(100% - 4%);
+    height: calc(100% - 4%);
+    left: calc(4% / 2);
+    top: calc(4% / 2);
     border-radius: 50%;
     background: #fff;
     z-index: 1;
@@ -49,7 +49,7 @@
 .fin {
     position: absolute;
     width: 1px;
-    left: calc(50% - .5px);
+    left: calc(50% - 1px / 2);
 
     height: calc(50% - .3em);
     top: .3em;
@@ -63,8 +63,8 @@
     position: absolute;
     width: 18%;
     height: 18%;
-    left: calc(50% - 9%);
-    top: calc(50% - 9%);
+    left: calc(50% - 18% / 2);
+    top: calc(50% - 18% / 2);
     
     border-radius: 50%;
     background: #fff;
@@ -78,8 +78,8 @@
     justify-content: space-between;
     align-items: center;
 
-    width: 118%;
-    left: -9%;
+    width: calc(100% + 18%);
+    left: calc(-18% / 2);
     height: 40px;
     top: calc(50% - 40px/2);
     font-weight: 600;
