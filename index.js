@@ -74,22 +74,23 @@ function tickSec() {
 }
 
 function play() {
-    intervalID = setInterval(tickSec,1)
+    intervalID = setInterval(tickSec,100)
+    isPlay = true;
+    control.innerHTML = `<i class="fas fa-pause"></i>`;
 }
 
 function pause() {
     clearInterval(intervalID);
+    isPlay = false;
+    control.innerHTML = `<i class="fas fa-play"></i>`;
 }
 
 function onClickControl() {
     if (isPlay) {
         pause();
-        control.innerHTML = `<i class="fas fa-play"></i>`;
-        isPlay = false;
+        
     } else {
         play();
-        control.innerHTML = `<i class="fas fa-pause"></i>`;
-        isPlay = true;
     }
 }
 
