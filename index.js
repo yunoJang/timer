@@ -81,9 +81,11 @@ function pause() {
 function onClickControl() {
     if (isPlay) {
         pause();
+        control.textContent = '▶';
         isPlay = false;
     } else {
         play();
+        control.textContent = '⏸';
         isPlay = true;
     }
 }
