@@ -119,13 +119,13 @@ body {
 }
 
 .time-container {
-    font-size: 18px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
 }
 .time-container .total-time {
-    font-size: 15px;
+    font-size: 13px;
     margin-top: 5px;
 }
