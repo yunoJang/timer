@@ -3,7 +3,13 @@ const lines = timer.querySelector('#lines');
 const fins = timer.querySelector('#fins');
 const nums = timer.querySelector('#num-container');
 
+const control = document.querySelector('.button-container #control');
+
 const endTime = 40;
+
+let intervalID = null;
+
+let isPlay = true;
 
 function paintLines() {
     for(let i=0; i<30; i++) {
@@ -65,7 +71,21 @@ function tickSec() {
 }
 
 function play() {
-    setInterval(tickSec,1000)
+    intervalID = setInterval(tickSec,100)
+}
+
+function pause() {
+    clearInterval(intervalID);
+}
+
+function onClickControl() {
+    if (isPlay) {
+        pause();
+        isPlay = false;
+    } else {
+        play();
+        isPlay = true;
+    }
 }
 
 if (lines) {
@@ -79,4 +99,8 @@ if (nums) {
 if (fins) {
     paintRemainTime();
     play();
+}
+
+if(control) {
+    control.addEventListener('click', onClickControl);
 }
