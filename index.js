@@ -7,7 +7,6 @@ const remainTime = document.querySelector('.time-container #remain-time');
 const totalTime = document.querySelector('.time-container #total-time');
 
 const endTime = 40
-const start = new Date();
 
 let intervalID = null;
 
@@ -67,14 +66,15 @@ function paintRemainTime() {
 
 function tickSec() {
     const lastFin = fins.lastChild;
+
     if (lastFin) {
         lastFin.remove();
+        renderRemainTime();
     }
-    renderRemainTime();
 }
 
 function play() {
-    intervalID = setInterval(tickSec,100)
+    intervalID = setInterval(tickSec,1)
 }
 
 function pause() {
@@ -97,18 +97,21 @@ let remainSec = 0;
 let remainMin = endTime;
 
 function renderRemainTime() {
+    if(remainMin < 0) return;
+
+    remainTime.textContent = `
+        ${remainMin < 10 ? `0${remainMin}`: remainMin}:
+        ${remainSec < 10 ? `0${remainSec}`: remainSec}
+    `;
+
     remainSec--;
 
     if (remainSec < 0) {
         remainSec = 59;
         remainMin--;
     }
-
-    remainTime.textContent = `
-        ${remainMin < 10 ? `0${remainMin}`: remainMin}:
-        ${remainSec < 10 ? `0${remainSec}`: remainSec}
-    `;
 }
+
 
 function paintTime() {
     renderRemainTime();
