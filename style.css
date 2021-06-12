@@ -108,6 +108,11 @@ body {
     border-radius: 50%;
     border: 1px solid #555;
     background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    color: rgb(255, 57, 50);
 }
 .control:active {
     transform: scale(.96);
