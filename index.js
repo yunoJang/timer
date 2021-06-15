@@ -9,6 +9,7 @@ const totalTime = document.querySelector('.time-container #total-time');
 const endTime = 40
 
 let intervalID = null;
+let progressTimeSec = 0;
 
 let isPlay = true;
 
@@ -51,7 +52,7 @@ function paintNumber() {
 }
 
 function paintRemainTime() {
-    for (let min=0; min<40; min++) {
+    for (let min=0; min<endTime; min++) {
         for (let sec=0; sec<60; sec++) {
             const remainFin = document.createElement('div');
             remainFin.classList.add('fin');
@@ -65,12 +66,16 @@ function paintRemainTime() {
 }
 
 function tickSec() {
+    progressTimeSec++;
+    if(progressTimeSec >= endTime * 60) pause();
+
     const lastFin = fins.lastChild;
 
     if (lastFin) {
         lastFin.remove();
-        renderRemainTime();
     }
+
+    renderRemainTime();
 }
 
 function play() {
@@ -94,25 +99,16 @@ function onClickControl() {
     }
 }
 
-let remainSec = 0;
-let remainMin = endTime;
-
 function renderRemainTime() {
-    if(remainMin < 0) return;
+    const totalSec = endTime * 60 - progressTimeSec;
+    const min = Math.floor(totalSec/60);
+    const sec = totalSec % 60;
 
     remainTime.textContent = `
-        ${remainMin < 10 ? `0${remainMin}`: remainMin}:
-        ${remainSec < 10 ? `0${remainSec}`: remainSec}
+        ${min<10?`0${min}`:min} : 
+        ${sec<10?`0${sec}`:sec}
     `;
-
-    remainSec--;
-
-    if (remainSec < 0) {
-        remainSec = 59;
-        remainMin--;
-    }
 }
-
 
 function paintTime() {
     renderRemainTime();
@@ -129,11 +125,14 @@ if (nums) {
 
 if (fins) {
     paintRemainTime();
-    play();
 }
 
 if(control) {
     control.addEventListener('click', onClickControl);
 }
 
-paintTime();
+if(remainTime && totalTime) {
+    paintTime();
+}
+
+play();
